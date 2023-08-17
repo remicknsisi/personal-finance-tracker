@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../context/UserProvider.js";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("")
 
-    const history = useHistory()
+    const navigate = useNavigate()
 
     const { login } = useContext(UserContext)
   
@@ -32,7 +32,7 @@ function Login() {
                     setEmail('')
                     setPassword('')
                     setError('')
-                    history.push('/')})
+                    navigate('/')})
             } else {
                 res.json().then((user) => setError(user.error.login))
             }

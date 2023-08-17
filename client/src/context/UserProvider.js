@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserContext = React.createContext();
 
 const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null)
-  const history = useHistory()
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch("/me")

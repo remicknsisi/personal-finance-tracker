@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useHistory, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 
 function Signup (){
@@ -10,7 +10,7 @@ function Signup (){
     const [errorsList, setErrorsList] = useState([])
     const { signup } = useContext(UserContext)
 
-    const history = useHistory()
+    const navigate = useNavigate()
 
     function handleSubmit(e){
         e.preventDefault()
@@ -29,7 +29,7 @@ function Signup (){
             if(res.ok){
                 res.json().then((newUser) => {
                     signup(newUser)
-                    history.push('/')
+                    navigate('/')
                 })
             } else {
                 res.json().then((newUser) => {
