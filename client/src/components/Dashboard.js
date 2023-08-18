@@ -11,9 +11,11 @@ function Dashboard (){
     return (
         <div>
             <h1>Welcome User!</h1>
+            <div className="budget-container">
             {currentUser ? currentUser.budgets.map(b => {
                 return <Budget budget={b} key={b.id}/>
             }): null}
+            </div>
         </div>
     )
 }

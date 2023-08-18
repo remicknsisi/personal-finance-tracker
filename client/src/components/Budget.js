@@ -7,8 +7,11 @@ function Budget ({ budget }){
     console.log(budget)
 
     return (
-        <div>
-            Allocated Budget: ${budget.amount}
+        <div className="budget">
+            <h3>Category: </h3>
+            <p>Total Allocated Budget: ${budget.amount}</p>
+            <p>Amount Remaining: </p>
+            <p>Tag: </p>
         </div>
     )
 }
