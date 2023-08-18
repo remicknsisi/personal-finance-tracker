@@ -9,4 +9,14 @@ User.create(name: "Sisi Remick", email: "remicknsisi@gmail.com", password: "pass
     )
 end
 
+10.times do
+    Transaction.create(
+        amount: rand(1.00..200.00),
+        date: "1/1/2023",
+        description: "description!",
+        payment_method: "Amex",
+        user_id: 1
+    )
+end
+
 puts "✅ Done seeding!"
