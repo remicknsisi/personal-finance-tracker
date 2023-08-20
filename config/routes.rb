@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :budgets, only: [:create, :index]
-  resources :transactions, only: [:create, :index]
+  resources :transactions, only: [:create, :index, :destroy]
   resources :tags, only: [:index]
 
   post "/signup", to: "users#create"

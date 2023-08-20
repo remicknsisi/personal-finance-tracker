@@ -39,14 +39,14 @@ function NewBudgetForm (){
                 <label>Amount: </label>
                 <input className="form-input" type="text" onChange={(e) => setAmount(e.target.value)} value={amount} placeholder="Ex: $100" />
                 <br></br>
-                <label>Select a Tag: </label>
+                {/* <label>Select a Tag: </label>
                 <select value={tag} className="form-input" onChange={e => setTag(e.target.value)}>
                     <option value="Hufflepuff">Render an option for each existing tag or option to create a new one</option>
                     <option value="Gryffindor">Gryffindor</option>
                     <option value="Slytherin">Slytherin</option>
                     <option value="Ravenclaw">Ravenclaw</option>
                     <option value="Hufflepuff">Hufflepuff</option>
-                </select>
+                </select> */}
                 <br></br>
                 <br></br>
                 <br/>

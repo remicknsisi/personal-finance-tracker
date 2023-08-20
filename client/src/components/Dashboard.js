@@ -31,18 +31,20 @@ function Dashboard (){
         return <Transaction transaction={t} key={t.id}/>}): null
 
     return (
-        <div>
-            <h1>Welcome User!</h1>
+        <div className="app">
+            {currentUser ? <h1>Welcome {currentUser.name}!</h1> : null}
             {currentUser ? <button onClick={handleLogout}>Logout</button> : <button onClick={() => navigate('/login')}>Login</button>}
+            <h2>Budgets</h2>
             <div className="budget-container">
                 {budgetsToDisplay}
-                <button onClick={() => navigate('/budgets/new')}>Add New Budget</button>
             </div>
+            <button onClick={() => navigate('/budgets/new')}>Add New Budget</button>
+            <h2>Transactions</h2>
+            <Sort onCheck={handleCheck} isChecked={isChecked}/>
             <div className="transaction-container">
-                <Sort onCheck={handleCheck} isChecked={isChecked}/>
                 {transactionsToDisplay}
-                <button onClick={() => navigate('/transactions/new')}>Add New Transaction</button>
             </div>
+            <button onClick={() => navigate('/transactions/new')}>Add New Transaction</button>
         </div>
     )
 }
