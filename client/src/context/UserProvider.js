@@ -19,6 +19,12 @@ const UserProvider = ({ children }) => {
   const logout = () => {setCurrentUser(null)}
   const signup = (newUser) => {setCurrentUser(newUser)}
 
+  function handleNewTransaction(newTransaction){
+    const userUpdatedTransactions = [...currentUser.transactions, newTransaction]
+    const updatedUser = {...currentUser, transactions: userUpdatedTransactions}
+    setCurrentUser(updatedUser)
+  }
+
 
 //   function handleDeleteAccount(){
 //     fetch(`/users/${currentUser.id}`, {
@@ -31,7 +37,7 @@ const UserProvider = ({ children }) => {
 //   }
 
   return (
-    <UserContext.Provider value={{currentUser, login, logout, signup}}>
+    <UserContext.Provider value={{currentUser, login, logout, signup, handleNewTransaction}}>
       {children}
     </UserContext.Provider>
   )

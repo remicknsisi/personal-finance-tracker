@@ -14,6 +14,8 @@ function NewTransactionForm (){
     const navigate = useNavigate()
 
     const [tags, setTags] = useState([])
+    const { handleNewTransaction } = useContext(UserContext)
+
 
     useEffect(() => {
         fetch('/tags')
@@ -38,7 +40,7 @@ function NewTransactionForm (){
            .then(res => {
             if(res.ok){
                 res.json().then((newTransaction) => {
-                    console.log(newTransaction, 'set new transaction in state!')
+                    handleNewTransaction(newTransaction)
                     navigate('/')})
             } else {
                 res.json().then((message) => {
