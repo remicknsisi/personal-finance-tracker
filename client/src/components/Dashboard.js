@@ -6,7 +6,7 @@ import Sort from './Sort.js';
 import Transaction from './Transaction.js';
 
 function Dashboard (){
-    const { currentUser } = useContext(UserContext)
+    const { currentUser, logout } = useContext(UserContext)
     const [isChecked, setIsChecked] = useState(false)
 
     const navigate = useNavigate()
@@ -16,6 +16,16 @@ function Dashboard (){
     function handleCheck(){
         setIsChecked(!isChecked)
       }
+    
+    function handleLogout(){
+        fetch("/logout",{
+            method: "DELETE"
+        })
+        .then(() => {
+            logout()
+            navigate('/login')
+        })
+    }
 
     const budgetsToDisplay = currentUser ? isChecked ? "these are the budgets in order of date" : currentUser.budgets.map(b => {
         return <Budget budget={b} key={b.id}/>}): null
@@ -26,6 +36,7 @@ function Dashboard (){
     return (
         <div>
             <h1>Welcome User!</h1>
+            {currentUser ? <button onClick={handleLogout}>Logout</button> : <button onClick={() => navigate('/login')}>Login</button>}
             <div className="budget-container">
                 {budgetsToDisplay}
                 <button onClick={() => navigate('/budgets/new')}>Add New Budget</button>
