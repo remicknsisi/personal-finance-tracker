@@ -14,6 +14,16 @@ class BudgetsController < ApplicationController
         render json: budgets, status: :ok
     end
 
+    def destroy
+        budget = Budget.find_by(id: params[:id])
+        if @user && @user.id == budget.user_id
+            budget.destroy
+            render json: budget, status: :ok
+        else
+            render json: { error: "You can only delete your own budgets!" }, status: :unauthorized
+        end
+    end
+
     private
 
     def budget_params

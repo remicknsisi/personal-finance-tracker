@@ -31,6 +31,12 @@ const UserProvider = ({ children }) => {
     setCurrentUser(updatedUser)
   }
 
+  function handleDeleteBudget(deletedBudget){
+    const userUpdatedBudgets = currentUser.budgets.filter(budget => budget.id !== deletedBudget.id)
+    const updatedUser = {...currentUser, budgets: userUpdatedBudgets}
+    setCurrentUser(updatedUser)
+  }
+
 //   function handleDeleteAccount(){
 //     fetch(`/users/${currentUser.id}`, {
 //         method: 'DELETE',
@@ -42,7 +48,7 @@ const UserProvider = ({ children }) => {
 //   }
 
   return (
-    <UserContext.Provider value={{currentUser, login, logout, signup, handleNewTransaction, handleDeleteTransaction}}>
+    <UserContext.Provider value={{currentUser, login, logout, signup, handleNewTransaction, handleDeleteTransaction, handleDeleteBudget}}>
       {children}
     </UserContext.Provider>
   )
