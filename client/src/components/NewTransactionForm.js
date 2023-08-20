@@ -1,14 +1,25 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css'
 
 function NewTransactionForm (){
     const [errorsList, setErrorsList] = useState([])
-    const [amount, setAmount] = useState(1)
+    const [amount, setAmount] = useState()
     const [date, setDate] = useState('')
+    const [tagId, setTagId] = useState()
     const [description, setDescription] = useState('')
     const [paymentMethod, setPaymentMethod] = useState('')
     const navigate = useNavigate()
+
+    const [tags, setTags] = useState([])
+
+    useEffect(() => {
+        fetch('/tags')
+        .then(res => res.json())
+        .then(tagData => setTags(tagData))
+    }, [])
 
     function handleSubmitTransaction(e){
         e.preventDefault()
@@ -20,7 +31,8 @@ function NewTransactionForm (){
                 amount: amount,
                 date: date,
                 description: description,
-                paymentMethod: paymentMethod
+                payment_method: paymentMethod,
+                tag_id: tagId
              })
            })
            .then(res => {
@@ -39,10 +51,16 @@ function NewTransactionForm (){
 
     return (
         <div className="form-container">
-            <h2>Create Transaction: </h2>
+            <h2>Log New Transaction: </h2>
             <form onSubmit={handleSubmitTransaction} className="form">
                 <label>Amount: </label>
-                <input className="form-input" type="text" onChange={(e) => setAmount(e.target.value)} value={amount} placeholder="Ex: $20" />
+                <input className="form-input" type="text" onChange={(e) => setAmount(e.target.value)} value={amount} placeholder="Ex: 20" />
+                <br></br>
+                <label>Tag: </label>
+                <select className='form-input' type="number" onChange={e => setTagId(e.target.value)}>
+                    <option>Select a Tag</option>
+                    {tags.map(tag => <option value={tag.id}>{tag.keyword}</option>)}
+                </select>
                 <br></br>
                 <label>Description: </label>
                 <input className="form-input" type="text" onChange={(e) => setDescription(e.target.value)} value={description} placeholder="Ex: Groceries week of 1/14" />
@@ -51,7 +69,7 @@ function NewTransactionForm (){
                 <input className="form-input" type="text" onChange={(e) => setPaymentMethod(e.target.value)} value={paymentMethod} placeholder="Ex: Cash" />
                 <br></br>
                 <label>Select a Date: </label>
-                <p>put the date picker here!</p>
+                <DatePicker selected={date} onChange={(d) => setDate(d)} />                
                 <br></br>
                 <br></br>
                 <br/>

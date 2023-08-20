@@ -11,13 +11,12 @@ function Transaction ({ transaction }){
         .then(res => res.json())
         .then(tagData => setTags(tagData))
     }, [])
-    console.log(tags)
 
     const tagToDisplay = tags.find(tag => tag.id == transaction.tag_id)
 
     return (
         <div className="transaction">
-            <h4>{tagToDisplay.keyword}: {transaction.description}</h4>
+            <h4>{tagToDisplay ? tagToDisplay.keyword : "Loading transaction..."}: {transaction.description}</h4>
             <p>Date: {transaction.date}</p>
             <p>Paymeny Method: {transaction.payment_method}</p>
         </div>
