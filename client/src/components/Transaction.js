@@ -18,7 +18,8 @@ function Transaction ({ transaction }){
         <div className="transaction">
             <h4>{tagToDisplay ? tagToDisplay.keyword : "Loading transaction..."}: {transaction.description}</h4>
             <p>Date: {transaction.date}</p>
-            <p>Paymeny Method: {transaction.payment_method}</p>
+            <p>Amount: ${(transaction.amount).toFixed(2)}</p>
+            <p>Payment Method: {transaction.payment_method}</p>
         </div>
     )
 }

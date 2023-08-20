@@ -25,7 +25,6 @@ const UserProvider = ({ children }) => {
     setCurrentUser(updatedUser)
   }
 
-
 //   function handleDeleteAccount(){
 //     fetch(`/users/${currentUser.id}`, {
 //         method: 'DELETE',

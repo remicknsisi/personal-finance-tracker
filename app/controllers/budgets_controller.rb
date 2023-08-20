@@ -9,6 +9,11 @@ class BudgetsController < ApplicationController
         end
     end
 
+    def index
+        budgets = Budget.all
+        render json: budgets, status: :ok
+    end
+
     private
 
     def budget_params

@@ -11,12 +11,9 @@ function Dashboard (){
 
     const navigate = useNavigate()
 
-    console.log(currentUser)
-
     function handleCheck(){
         setIsChecked(!isChecked)
       }
-    
     function handleLogout(){
         fetch("/logout",{
             method: "DELETE"

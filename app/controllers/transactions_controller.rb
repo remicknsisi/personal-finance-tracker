@@ -9,6 +9,11 @@ class TransactionsController < ApplicationController
         end
     end
 
+    def index
+        transactions = Transaction.all
+        render json: transactions, status: :ok
+    end
+
     private
 
     def transaction_params

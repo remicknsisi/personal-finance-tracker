@@ -6,12 +6,14 @@ function Budget ({ budget }){
     const { currentUser } = useContext(UserContext)
     console.log(budget)
 
+    const navigate = useNavigate()
+
     return (
         <div className="budget">
-            <h3>Category: </h3>
+            <h3>Budget tagname </h3>
             <p>Total Allocated Budget: ${budget.amount}</p>
             <p>Amount Remaining: </p>
-            <p>Tag: </p>
+            <button onClick={() => navigate(`/budgets/${budget.id}`)}>See More...</button>
         </div>
     )
 }

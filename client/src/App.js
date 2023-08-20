@@ -7,6 +7,7 @@ import Signup from "./components/Signup.js";
 import NewBudgetForm from "./components/NewBudgetForm.js";
 import NewTransactionForm from "./components/NewTransactionForm.js";
 import './App.css';
+import BudgetDetails from "./components/BudgetDetails.js";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           {/* <Route path="/budgets/:id" element={<BudgetDetails/>}/> */}
           <Route path="/budgets/new" element={<NewBudgetForm/>}/>
           <Route path="/transactions/new" element={<NewTransactionForm/>}/>
+          <Route path="/budgets/:id" element={<BudgetDetails/>}/>
         </Routes>
       </header>
       </UserProvider>
