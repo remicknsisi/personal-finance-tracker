@@ -33,13 +33,16 @@ function BudgetDetails (){
     const budgetToDisplay = budgets.find(b => b.id == id)
     const tagToDisplay = tags.find(tag => tag.budget_id == id)
     const transactionsToDisplay = transactions.filter(t => t.tag_id == tagToDisplay.id)
+    const budget_remaining = (budgetToDisplay.amount - transactionsToDisplay.map(t => t.amount).reduce((a, b) => {
+        return a + b;
+    }, 0))
 
     return (
         <div className="budget-details">
             <div className="budget">
                 <h3>Budget tagname </h3>
                 <p>Total Allocated Budget: ${(budgetToDisplay.amount).toFixed(2)}</p>
-                <p>Amount Remaining: </p>
+                <p>Amount Remaining: ${budget_remaining.toFixed(2)}</p>
                 <button onClick={() => navigate('/')}>Back to Dashboard</button>
             </div>
             <div className="transaction">
