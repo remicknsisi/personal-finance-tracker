@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :budgets, only: [:create]
   resources :transactions, only: [:create]
+  resources :tags, only: [:index]
 
   post "/signup", to: "users#create"
   get "/me", to: "users#show"

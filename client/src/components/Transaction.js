@@ -1,17 +1,25 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 
 function Transaction ({ transaction }){
     const { currentUser } = useContext(UserContext)
-    console.log(transaction)
+    const [tags, setTags] = useState([])
+
+    useEffect(() => {
+        fetch('/tags')
+        .then(res => res.json())
+        .then(tagData => setTags(tagData))
+    }, [])
+    console.log(tags)
+
+    const tagToDisplay = tags.find(tag => tag.id == transaction.tag_id)
 
     return (
         <div className="transaction">
-            <h3>Tag: </h3>
-            <p>Date: </p>
-            <p>Description: </p>
-            <p>Paymeny Method: </p>
+            <h4>{tagToDisplay.keyword}: {transaction.description}</h4>
+            <p>Date: {transaction.date}</p>
+            <p>Paymeny Method: {transaction.payment_method}</p>
         </div>
     )
 }
