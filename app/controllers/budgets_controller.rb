@@ -24,6 +24,16 @@ class BudgetsController < ApplicationController
         end
     end
 
+    def update
+        budget = Budget.find_by(id: params[:id])
+        if @user && @user.id == budget.user_id
+            budget.update(budget_params)
+            render json: budget, status: :ok
+        else
+            render json: {error: "You may only edit your own budgets!"}, status: :unprocessable_entity
+        end
+    end
+
     private
 
     def budget_params

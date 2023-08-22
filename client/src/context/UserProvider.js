@@ -31,8 +31,20 @@ const UserProvider = ({ children }) => {
     setCurrentUser(updatedUser)
   }
 
+  function handleNewBudget(newBudget){
+    const userUpdatedBudgets = [...currentUser.budgets, newBudget]
+    const updatedUser = {...currentUser, budgets: userUpdatedBudgets}
+    setCurrentUser(updatedUser)
+  }
+
   function handleDeleteBudget(deletedBudget){
     const userUpdatedBudgets = currentUser.budgets.filter(budget => budget.id !== deletedBudget.id)
+    const updatedUser = {...currentUser, budgets: userUpdatedBudgets}
+    setCurrentUser(updatedUser)
+  }
+
+  function handleUpdateBudget(updatedBudget){
+    const userUpdatedBudgets = currentUser.budgets.map(budget => budget.id === updatedBudget.id ? updatedBudget : budget)
     const updatedUser = {...currentUser, budgets: userUpdatedBudgets}
     setCurrentUser(updatedUser)
   }
@@ -48,7 +60,7 @@ const UserProvider = ({ children }) => {
 //   }
 
   return (
-    <UserContext.Provider value={{currentUser, login, logout, signup, handleNewTransaction, handleDeleteTransaction, handleDeleteBudget}}>
+    <UserContext.Provider value={{currentUser, login, logout, signup, handleNewTransaction, handleDeleteTransaction, handleDeleteBudget, handleUpdateBudget, handleNewBudget}}>
       {children}
     </UserContext.Provider>
   )

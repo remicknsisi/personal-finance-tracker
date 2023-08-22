@@ -1,14 +1,24 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 
-function NewBudgetForm (){
+function EditBudgetForm() {
     const [errorsList, setErrorsList] = useState([])
-    const [amount, setAmount] = useState(1)
+    const [amount, setAmount] = useState()
+    const [tagId, setTagId] = useState()
     const [tags, setTags] = useState([])
-    const [tagId, setTagId] = useState(1)
-    const { handleNewBudget } = useContext(UserContext)
+    const { currentUser, handleUpdateBudget } = useContext(UserContext)
+    const { id } = useParams()
     const navigate = useNavigate()
+
+    const budgetOfFocus = currentUser.budgets.find(b => b.id == id)
+
+    useEffect(() => {
+        if (budgetOfFocus){
+        setAmount(budgetOfFocus.amount)
+        setTagId(budgetOfFocus.id)
+    }
+    }, [currentUser])
 
     useEffect(() => {
         fetch('/tags')
@@ -16,11 +26,11 @@ function NewBudgetForm (){
         .then(tagData => setTags(tagData))
     }, [])
 
-    function handleSubmitBudget(e){
+    function handleSubmit(e){
         e.preventDefault()
 
-        fetch(`/budgets`, {
-            method: 'POST',
+        fetch(`/budgets/${id}`, {
+            method: 'PATCH',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
                 amount: amount,
@@ -29,8 +39,8 @@ function NewBudgetForm (){
            })
            .then(res => {
             if(res.ok){
-                res.json().then((newBudget) => {
-                    handleNewBudget(newBudget)
+                res.json().then((updatedBudget) => {
+                    handleUpdateBudget(updatedBudget)
                     navigate('/')})
             } else {
                 res.json().then((message) => {
@@ -41,12 +51,12 @@ function NewBudgetForm (){
         })
     }
 
-    return (
-        <div className="form-container">
-            <h2>Create Budget: </h2>
-            <form onSubmit={handleSubmitBudget} className="form">
+  return (
+    <div className="form">
+            <h2>Edit Budget: </h2>
+            <form onSubmit={handleSubmit} className="form">
                 <label>Amount: </label>
-                <input className="form-input" type="text" onChange={(e) => setAmount(e.target.value)} value={amount} placeholder="Ex: $100" />
+                $<input className="form-input" type="text" onChange={(e) => setAmount(e.target.value)} value={amount}/>
                 <br></br>
                 <label>Select a Tag: </label>
                 <select value={tagId} className="form-input" onChange={e => setTagId(e.target.value)}>
@@ -55,11 +65,13 @@ function NewBudgetForm (){
                 <br></br>
                 <br></br>
                 <br/>
-                <button type="submit">Create Budget</button>
+                <button type="submit">Finish Editing Budget</button>
                 <p className="error-message">{errorsList}</p>
             </form>
-        </div>
-    )
+    </div>
+  );
 }
 
-export default NewBudgetForm;
+export default EditBudgetForm;
+
+// do i want to let the user be able to edit the tag here?

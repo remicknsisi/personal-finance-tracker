@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :budgets, only: [:create, :index, :destroy]
+  resources :budgets, only: [:create, :index, :destroy, :update]
   resources :transactions, only: [:create, :index, :destroy]
   resources :tags, only: [:index]
 

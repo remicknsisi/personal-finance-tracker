@@ -2,11 +2,13 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 import Transaction from './Transaction.js';
+import EditBudgetForm from './EditBudgetForm.js';
 
 function BudgetDetails (){
     const [budgets, setBudgets] = useState([])
     const [tags, setTags] = useState([])
     const [transactions, setTransactions] = useState([])
+    const [isHidden, setIsHidden] = useState(true)
     const { currentUser } = useContext(UserContext)
     const { id } = useParams()
 
@@ -44,6 +46,8 @@ function BudgetDetails (){
                 <p>Total Allocated Budget: ${budgetToDisplay ? (budgetToDisplay.amount).toFixed(2) : "Loading..."}</p>
                 <p>Amount Remaining: ${budget_remaining ? budget_remaining.toFixed(2) : "Loading..."}</p>
                 <button onClick={() => navigate('/')}>Back to Dashboard</button>
+                <button onClick={() => setIsHidden(!isHidden)}>Edit Budget</button>
+                {isHidden ? null : <EditBudgetForm/>}
             </div>
             <div className="transaction">
                 {transactionsToDisplay ? transactionsToDisplay.map(t => {
