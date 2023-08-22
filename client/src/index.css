@@ -52,3 +52,7 @@ button {
 button:hover {
   background-color: lightblue;
 }
+
+.error-message {
+  color: red
+}
