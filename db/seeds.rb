@@ -4,19 +4,43 @@ puts "🌱 Seeding data..."
 
 User.create(name: "Sisi Remick", email: "remicknsisi@gmail.com", password: "password", password_confirmation: "password")
 
-6.times do
-    Budget.create(
-        amount: rand(1..20),
-        user_id: 1
-    )
-end
+Tag.create(keyword: "Groceries")
+Tag.create(keyword: "Rent")
+Tag.create(keyword: "Utilities")
+Tag.create(keyword: "Entertainment")
+Tag.create(keyword: "Pet")
+Tag.create(keyword: "Misc")
 
-Tag.create(keyword: "Groceries", budget_id: 1)
-Tag.create(keyword: "Rent", budget_id: 2)
-Tag.create(keyword: "Utilities", budget_id: 3)
-Tag.create(keyword: "Entertainment", budget_id: 4)
-Tag.create(keyword: "Pet", budget_id: 5)
-Tag.create(keyword: "Misc", budget_id: 6)
+Budget.create(
+    amount: rand(1..20),
+    user_id: 1,
+    tag_id: 1
+)
+Budget.create(
+    amount: rand(1..20),
+    user_id: 1,
+    tag_id: 2
+)
+Budget.create(
+    amount: rand(1..20),
+    user_id: 1,
+    tag_id: 3
+)
+Budget.create(
+    amount: rand(1..20),
+    user_id: 1,
+    tag_id: 4
+)
+Budget.create(
+    amount: rand(1..20),
+    user_id: 1,
+    tag_id: 5
+)
+Budget.create(
+    amount: rand(1..20),
+    user_id: 1,
+    tag_id: 6
+)
 
 10.times do
     Transaction.create(

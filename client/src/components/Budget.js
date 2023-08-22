@@ -34,7 +34,7 @@ function Budget ({ budget }){
 
     const navigate = useNavigate()
 
-    const tagToDisplay = tags.find(tag => tag.budget_id == budget.id)
+    const tagToDisplay = tags.find(tag => tag.id == budget.tag_id)
 
     return (
         <div className="budget">

@@ -5,7 +5,7 @@ import { UserContext } from "../context/UserProvider.js";
 function NewBudgetForm (){
     const [errorsList, setErrorsList] = useState([])
     const [amount, setAmount] = useState(1)
-    const [tag, setTag] = useState('')
+    const [tagId, setTagId] = useState()
     const navigate = useNavigate()
 
     function handleSubmitBudget(e){
@@ -15,7 +15,8 @@ function NewBudgetForm (){
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
-                amount: amount
+                amount: amount,
+                tag_id: tagId
              })
            })
            .then(res => {
@@ -39,14 +40,14 @@ function NewBudgetForm (){
                 <label>Amount: </label>
                 <input className="form-input" type="text" onChange={(e) => setAmount(e.target.value)} value={amount} placeholder="Ex: $100" />
                 <br></br>
-                {/* <label>Select a Tag: </label>
-                <select value={tag} className="form-input" onChange={e => setTag(e.target.value)}>
+                <label>Select a Tag: </label>
+                <select value={tagId} className="form-input" onChange={e => setTagId(e.target.value)}>
                     <option value="Hufflepuff">Render an option for each existing tag or option to create a new one</option>
-                    <option value="Gryffindor">Gryffindor</option>
+                    {/* <option value="Gryffindor">Gryffindor</option>
                     <option value="Slytherin">Slytherin</option>
                     <option value="Ravenclaw">Ravenclaw</option>
-                    <option value="Hufflepuff">Hufflepuff</option>
-                </select> */}
+                    <option value="Hufflepuff">Hufflepuff</option> */}
+                </select>
                 <br></br>
                 <br></br>
                 <br/>

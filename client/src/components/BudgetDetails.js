@@ -28,10 +28,10 @@ function BudgetDetails (){
         fetch('/transactions')
         .then(res => res.json())
         .then(transactionData => setTransactions(transactionData))
-    }, [])
+    }, [currentUser])
 
     const budgetToDisplay = budgets.find(b => b.id == id)
-    const tagToDisplay = tags.find(tag => tag.budget_id == id)
+    const tagToDisplay = budgetToDisplay ? tags.find(tag => tag.id == budgetToDisplay.tag_id) : null
     const transactionsToDisplay = tagToDisplay ? transactions.filter(t => t.tag_id == tagToDisplay.id) : null
     const budget_remaining = budgetToDisplay && transactionsToDisplay ? (budgetToDisplay.amount - transactionsToDisplay.map(t => t.amount).reduce((a, b) => {
         return a + b;
@@ -40,7 +40,7 @@ function BudgetDetails (){
     return (
         <div className="budget-details">
             <div className="budget">
-                <h3>Budget tagname </h3>
+                <h3>{tagToDisplay ? tagToDisplay.keyword: "Loading..."} Budget</h3>
                 <p>Total Allocated Budget: ${budgetToDisplay ? (budgetToDisplay.amount).toFixed(2) : "Loading..."}</p>
                 <p>Amount Remaining: ${budget_remaining ? budget_remaining.toFixed(2) : "Loading..."}</p>
                 <button onClick={() => navigate('/')}>Back to Dashboard</button>
