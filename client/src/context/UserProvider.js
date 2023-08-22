@@ -49,6 +49,10 @@ const UserProvider = ({ children }) => {
     setCurrentUser(updatedUser)
   }
 
+  function handleNewTag(newTag){
+    console.log('new tag!')
+  }
+
 //   function handleDeleteAccount(){
 //     fetch(`/users/${currentUser.id}`, {
 //         method: 'DELETE',
@@ -60,7 +64,7 @@ const UserProvider = ({ children }) => {
 //   }
 
   return (
-    <UserContext.Provider value={{currentUser, login, logout, signup, handleNewTransaction, handleDeleteTransaction, handleDeleteBudget, handleUpdateBudget, handleNewBudget}}>
+    <UserContext.Provider value={{currentUser, login, logout, signup, handleNewTransaction, handleDeleteTransaction, handleDeleteBudget, handleUpdateBudget, handleNewBudget, handleNewTag}}>
       {children}
     </UserContext.Provider>
   )

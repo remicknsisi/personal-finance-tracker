@@ -3,12 +3,10 @@ import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 
 function NewTagForm(){
-    // const [errorsList, setErrorsList] = useState([])
-    // const [amount, setAmount] = useState(1)
-    // const [tags, setTags] = useState([])
-    // const [tagId, setTagId] = useState(1)
-    // const { handleNewBudget } = useContext(UserContext)
-    // const navigate = useNavigate()
+    const [errorsList, setErrorsList] = useState([])
+    const [keyword, setKeyword] = useState('')
+    const { handleNewTag } = useContext(UserContext)
+    const navigate = useNavigate()
 
     // useEffect(() => {
     //     fetch('/tags')
@@ -16,49 +14,43 @@ function NewTagForm(){
     //     .then(tagData => setTags(tagData))
     // }, [])
 
-    // function handleSubmitBudget(e){
-    //     e.preventDefault()
+    function handleSubmitTag(e){
+        e.preventDefault()
 
-    //     fetch(`/budgets`, {
-    //         method: 'POST',
-    //         headers: {"Content-Type": "application/json"},
-    //         body: JSON.stringify({
-    //             amount: amount,
-    //             tag_id: tagId
-    //          })
-    //        })
-    //        .then(res => {
-    //         if(res.ok){
-    //             res.json().then((newBudget) => {
-    //                 handleNewBudget(newBudget)
-    //                 navigate('/')})
-    //         } else {
-    //             res.json().then((message) => {
-    //                 const errorLis = message.errors.map(error => <li key={error}>{error}</li>)
-    //                 setErrorsList(errorLis)
-    //             })
-    //         }
-    //     })
-    // }
+        fetch(`/tags`, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                keyword: keyword
+             })
+           })
+           .then(res => {
+            if(res.ok){
+                res.json().then((newTag) => {
+                    handleNewTag(newTag)
+                    navigate('/budgets/new')})
+            } else {
+                res.json().then((message) => {
+                    const errorLis = message.errors.map(error => <li key={error}>{error}</li>)
+                    setErrorsList(errorLis)
+                })
+            }
+        })
+    }
 
     return (
         <div className="form-container">
-            {/* <h2>Create Budget: </h2>
-            <form onSubmit={handleSubmitBudget} className="form">
-                <label>Amount: </label>
-                <input className="form-input" type="text" onChange={(e) => setAmount(e.target.value)} value={amount} placeholder="Ex: $100" />
+            <h2>Create Tag: </h2>
+            <form onSubmit={handleSubmitTag} className="form">
+                <label>Keyword: </label>
+                <input className="form-input" type="text" onChange={(e) => setKeyword(e.target.value)} value={keyword} placeholder="Ex: Groceries" />
                 <br></br>
-                <label>Select a Tag: </label>
-                <select value={tagId} className="form-input" onChange={e => setTagId(e.target.value)}>
-                    {tags.map(tag => <option value={tag.id}>{tag.keyword}</option>)}
-                </select>
-                <br></br>
-                <p>Don't see the tag you want for your budget? Create a new one <Link to={'/tags/new'}>here.</Link></p>
-                <button type="submit">Create Budget</button>
-                <p className="error-message">{errorsList}</p> */}
-            {/* </form> */}
+                <button type="submit">Create Tag</button>
+                <p className="error-message">{errorsList}</p>
+                <button onClick={() => navigate('/')}>Back to Dashboard</button>
+            </form>
         </div>
     )
 }
 
-export default NewTagForm();
+export default NewTagForm;

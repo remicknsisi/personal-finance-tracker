@@ -56,6 +56,7 @@ function NewBudgetForm (){
                 <p>Don't see the tag you want for your budget? Create a new one <Link to={'/tags/new'}>here.</Link></p>
                 <button type="submit">Create Budget</button>
                 <p className="error-message">{errorsList}</p>
+                <button onClick={() => navigate('/')}>Back to Dashboard</button>
             </form>
         </div>
     )

@@ -77,6 +77,7 @@ function NewTransactionForm (){
                 <br/>
                 <button type="submit">Submit Transaction</button>
                 <p className="error-message">{errorsList}</p>
+                <button onClick={() => navigate('/')}>Back to Dashboard</button>
             </form>
         </div>
     )
