@@ -16,7 +16,7 @@ function Dashboard (){
         fetch('/transactions')
         .then(res => res.json())
         .then(transactionData => setTransactions(transactionData))
-    }, [])
+    }, [currentUser])
 
     function handleCheck(){
         setIsChecked(!isChecked)
@@ -34,7 +34,6 @@ function Dashboard (){
     const budgetsToDisplay = currentUser ? currentUser.budgets.map(b => {
         return <Budget budget={b} key={b.id}/>}): null
 
-
     const allTransactions = transactions.map(t => {
         return <Transaction transaction={t} key={t.id}/>})
 
@@ -42,8 +41,6 @@ function Dashboard (){
         return <Transaction transaction={t} key={t.id}/>})
 
     const transactionsToDisplay = isChecked ? sortedTransactions : allTransactions
-
-
     
     return (
         <div className="app">
