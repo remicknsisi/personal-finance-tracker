@@ -53,8 +53,7 @@ function NewBudgetForm (){
                     {tags.map(tag => <option value={tag.id}>{tag.keyword}</option>)}
                 </select>
                 <br></br>
-                <br></br>
-                <br/>
+                <p>Don't see the tag you want for your budget? Create a new one <Link to={'/tags/new'}>here.</Link></p>
                 <button type="submit">Create Budget</button>
                 <p className="error-message">{errorsList}</p>
             </form>

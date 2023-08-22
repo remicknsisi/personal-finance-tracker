@@ -44,7 +44,7 @@ function Dashboard (){
     
     return (
         <div className="app">
-            {currentUser ? <h1>Welcome {currentUser.name}!</h1> : null}
+            {currentUser ? <h1>Welcome to RailsRiches, {currentUser.name}!</h1> : null}
             {currentUser ? <button onClick={handleLogout}>Logout</button> : <button onClick={() => navigate('/login')}>Login</button>}
             <h2>Budgets</h2>
             <div className="budget-container">
