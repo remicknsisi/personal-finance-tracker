@@ -6,11 +6,17 @@ import Sort from './Sort.js';
 import Transaction from './Transaction.js';
 
 function Dashboard (){
-    const { currentUser, logout } = useContext(UserContext)
+    const { currentUser, logout, handleDeleteAccount} = useContext(UserContext)
     const [isChecked, setIsChecked] = useState(false)
     const [transactions, setTransactions] = useState([])
 
     const navigate = useNavigate()
+
+    function confirmDelete(){
+        if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+            handleDeleteAccount()
+        }
+    }
 
     useEffect(() => {
         fetch('/transactions')
@@ -46,6 +52,7 @@ function Dashboard (){
         <div className="app">
             {currentUser ? <h1>Welcome to RailsRiches, {currentUser.name}!</h1> : null}
             {currentUser ? <button onClick={handleLogout}>Logout</button> : <button onClick={() => navigate('/login')}>Login</button>}
+            <button onClick={() => confirmDelete()}>Delete Account</button>
             <h2>Budgets</h2>
             <div className="budget-container">
                 {budgetsToDisplay}

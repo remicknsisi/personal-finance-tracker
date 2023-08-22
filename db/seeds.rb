@@ -12,32 +12,32 @@ Tag.create(keyword: "Pet")
 Tag.create(keyword: "Misc")
 
 Budget.create(
-    amount: rand(1..20),
+    amount: 400,
     user_id: 1,
     tag_id: 1
 )
 Budget.create(
-    amount: rand(1..20),
+    amount: 1500,
     user_id: 1,
     tag_id: 2
 )
 Budget.create(
-    amount: rand(1..20),
+    amount: 150,
     user_id: 1,
     tag_id: 3
 )
 Budget.create(
-    amount: rand(1..20),
+    amount: 250,
     user_id: 1,
     tag_id: 4
 )
 Budget.create(
-    amount: rand(1..20),
+    amount: 100,
     user_id: 1,
     tag_id: 5
 )
 Budget.create(
-    amount: rand(1..20),
+    amount: 200,
     user_id: 1,
     tag_id: 6
 )

@@ -53,18 +53,18 @@ const UserProvider = ({ children }) => {
     console.log('new tag!')
   }
 
-//   function handleDeleteAccount(){
-//     fetch(`/users/${currentUser.id}`, {
-//         method: 'DELETE',
-//         headers: {"Content-Type": "application/json"}})
-//       .then(() => {
-//         history.push(`/login`)
-//         setCurrentUser(null)
-//         })
-//   }
+  function handleDeleteAccount(){
+    fetch(`/users/${currentUser.id}`, {
+        method: 'DELETE',
+        headers: {"Content-Type": "application/json"}})
+      .then(() => {
+        navigate(`/login`)
+        setCurrentUser(null)
+        })
+  }
 
   return (
-    <UserContext.Provider value={{currentUser, login, logout, signup, handleNewTransaction, handleDeleteTransaction, handleDeleteBudget, handleUpdateBudget, handleNewBudget, handleNewTag}}>
+    <UserContext.Provider value={{currentUser, login, logout, signup, handleNewTransaction, handleDeleteTransaction, handleDeleteBudget, handleUpdateBudget, handleNewBudget, handleNewTag, handleDeleteAccount}}>
       {children}
     </UserContext.Provider>
   )
