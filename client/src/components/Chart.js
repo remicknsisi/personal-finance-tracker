@@ -34,8 +34,8 @@ function Chart({ data }) {
           <YAxis dataKey="amount"/>
           <Tooltip />
           <Legend />
-          <Bar dataKey="date" fill="#F19CBB" />
-          <Bar dataKey="amount" fill="#AB274F" />
+          <Bar dataKey="date" fill="#FFBF00" />
+          <Bar dataKey="amount" fill="#FF7E00" />
         </BarChart>
       </ResponsiveContainer>
     );

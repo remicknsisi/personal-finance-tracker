@@ -51,12 +51,12 @@ function BudgetDetails (){
                 {isHidden ? null : <EditBudgetForm/>}
             </div>
             <br/>
-            <Chart data={transactionsToDisplay} />
+            {transactionsToDisplay ? <Chart data={transactionsToDisplay} /> : null}
             <br/>
             <div className="transaction">
             <h3>Transactions Under this Budget:</h3>
-                {transactionsToDisplay ? transactionsToDisplay.map(t => {
-                    return <Transaction transaction={t} key={t.id}/>}) : "Loading..."}
+                {transactionsToDisplay ? transactionsToDisplay.length > 0 ? transactionsToDisplay.map(t => {
+                    return <Transaction transaction={t} key={t.id}/>}) : "You have no transactions logged for this budget!" : "Loading..."}
             </div>
         </div>
     )

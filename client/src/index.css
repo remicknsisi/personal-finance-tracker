@@ -1,10 +1,18 @@
-.app {
-  padding: 5px
+.App {
+  padding: 50px;
+  background-color: #7CB9E8;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.App-header {
+  font-size: x-large;
 }
 
 .title {
   text-align: center;
   margin: auto;
+  padding-bottom: 10px;
 }
 
 body {
@@ -48,7 +56,8 @@ code {
 
 button {
   color: white;
-  background-color: blue;
+  font-weight: bolder;
+  background-color: #FFB366;
   border-radius: 10px;
   padding: 3px;
 }

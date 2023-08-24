@@ -1,4 +1,4 @@
-# Project Template: React/Rails API
+# RailsRiches: Personal Finance Tracker with a React/Rails API
 
 ## Description
 
@@ -6,7 +6,7 @@ Thanks for your interest in my RailsRiches SPA. I created this app utilizing a R
 
 Users may sign up and existing Users may sign in. I have built in functionality to store passwords securely using the bcrypt gem. Once logged in, Users will be redirected to their dashboard. From here, they can create new budgets for each area of their lives they're looking to track financially (e.g. 'Rent', 'Pet', 'Groceries', etc). Each Budget model has a User-assigned allocated budget, as well as the ability to track (and subtract from the total budget) all transactions that file into that budget. Users, of course, also have the ability to log new transaction details as well as delete transactions.
 
-Because I am fairly comfortable with the Ruby on Rails / React API framework, I decided to challenge myself by incorporating something new. On the Budget Details pages, I've included charts as a new way of visualizing data than in simple JSX.
+Because I am fairly comfortable with the Ruby on Rails / React API framework, I decided to challenge myself by incorporating something new. On the Budget Details pages, I've included charts with 'recharts' as a new way of visualizing data than in simple JSX.
 
 ## Requirements
 
@@ -15,6 +15,8 @@ Because I am fairly comfortable with the Ruby on Rails / React API framework, I 
 - Render account
 - Postgresql
 - react-datepicker
+- recharts
+- react-router-dom
 
 ## Setup
 
