@@ -5,6 +5,7 @@ const UserContext = React.createContext();
 
 const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null)
+  const [tags, setTags] = useState([])
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -49,6 +50,21 @@ const UserProvider = ({ children }) => {
     setCurrentUser(updatedUser)
   }
 
+  useEffect(() => {
+    fetch('/tags')
+    .then(res => res.json())
+    .then(tagData => setTags(tagData))
+    }, [])
+
+  function handleDeleteTag(deletedTag){
+    const updatedTags = tags.filter(tag => tag.id !== deletedTag.id)
+    setTags(updatedTags)
+  }
+  function handleCreateTag(newTag){
+    const updatedTags = [...tags, newTag]
+    setTags(updatedTags)
+  }
+
   function handleDeleteAccount(){
     fetch(`/users/${currentUser.id}`, {
         method: 'DELETE',
@@ -60,7 +76,7 @@ const UserProvider = ({ children }) => {
   }
 
   return (
-    <UserContext.Provider value={{currentUser, login, logout, signup, handleNewTransaction, handleDeleteTransaction, handleDeleteBudget, handleUpdateBudget, handleNewBudget, handleDeleteAccount}}>
+    <UserContext.Provider value={{currentUser, login, logout, signup, handleNewTransaction, handleDeleteTransaction, handleDeleteBudget, handleUpdateBudget, handleNewBudget, handleDeleteAccount, tags, handleDeleteTag, handleCreateTag}}>
       {children}
     </UserContext.Provider>
   )

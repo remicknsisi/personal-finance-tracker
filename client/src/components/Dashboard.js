@@ -7,10 +7,9 @@ import Transaction from './Transaction.js';
 import Tag from './Tag.js';
 
 function Dashboard (){
-    const { currentUser, logout, handleDeleteAccount} = useContext(UserContext)
+    const { currentUser, logout, handleDeleteAccount, tags} = useContext(UserContext)
     const [isChecked, setIsChecked] = useState(false)
     const [transactions, setTransactions] = useState([])
-    const [tags, setTags] = useState([])
 
     const navigate = useNavigate()
 
@@ -19,17 +18,6 @@ function Dashboard (){
             handleDeleteAccount()
         }
     }
-
-    useEffect(() => {
-        fetch('/tags')
-        .then(res => res.json())
-        .then(tagData => setTags(tagData))
-    }, [])
-    
-      function handleDeleteTag(deletedTag){
-        const updatedTags = tags.filter(tag => tag.id !== deletedTag.id)
-        setTags(updatedTags)
-      }
 
     useEffect(() => {
         fetch('/transactions')
@@ -54,7 +42,7 @@ function Dashboard (){
         return <Budget budget={b} key={b.id}/>}): null
         
     const tagsToDisplay = tags.map(t => {
-        return <Tag tag={t} key={t.id} onDelete={handleDeleteTag}/>})
+        return <Tag tag={t} key={t.id}/>})
 
     const allTransactions = transactions.map(t => {
         return <Transaction transaction={t} key={t.id}/>})

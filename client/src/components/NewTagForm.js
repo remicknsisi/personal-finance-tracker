@@ -5,14 +5,8 @@ import { UserContext } from "../context/UserProvider.js";
 function NewTagForm(){
     const [errorsList, setErrorsList] = useState([])
     const [keyword, setKeyword] = useState('')
-    const { handleNewTag } = useContext(UserContext)
+    const { handleCreateTag } = useContext(UserContext)
     const navigate = useNavigate()
-
-    // useEffect(() => {
-    //     fetch('/tags')
-    //     .then(res => res.json())
-    //     .then(tagData => setTags(tagData))
-    // }, [])
 
     function handleSubmitTag(e){
         e.preventDefault()
@@ -27,8 +21,8 @@ function NewTagForm(){
            .then(res => {
             if(res.ok){
                 res.json().then((newTag) => {
-                    handleNewTag(newTag)
-                    navigate('/budgets/new')})
+                    handleCreateTag(newTag)
+                    navigate('/')})
             } else {
                 res.json().then((message) => {
                     const errorLis = message.errors.map(error => <li key={error}>{error}</li>)
