@@ -14,7 +14,7 @@ function App() {
   return (
 <div className="App">
   <header className="App-header">
-    <h1 className="title">Welcome to RailsRiches!</h1>
+    <h1 className="title">💸Welcome to RailsRiches!💸</h1>
     <h3 className="title">Your Personal Finance Tracker</h3>
   </header>
       <UserProvider>

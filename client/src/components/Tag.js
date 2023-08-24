@@ -5,6 +5,12 @@ function Tag ({ tag }){
     const { currentUser, handleDeleteTag } = useContext(UserContext)
     const [error, setError] = useState('')
 
+    function confirmDelete(tag){
+        if (window.confirm("Are you sure you want to delete this tag? This action cannot be undone and all transactions that belong to this tag will also be deleted.")) {
+            handleDelete(tag)
+        }
+    }
+
     function handleDelete(tag){
         fetch(`/tags/${tag.id}`, {
             method: 'DELETE',
@@ -27,7 +33,7 @@ function Tag ({ tag }){
     return (
         <div className="tag">
             {tag.keyword}
-            <button onClick={() => handleDelete(tag)}> Delete </button>
+            <button onClick={() => confirmDelete(tag)}> Delete </button>
             <p className="error-message">{error}</p>
         </div>
     )

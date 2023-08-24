@@ -8,6 +8,8 @@ Users may sign up and existing Users may sign in. I have built in functionality 
 
 Because I am fairly comfortable with the Ruby on Rails / React API framework, I decided to challenge myself by incorporating something new. On the Budget Details pages, I've included charts with 'recharts' as a new way of visualizing data than in simple JSX.
 
+If I were to expand upon this app in the future, I'd be interested in allowing the User to filter graphs/charts displaying their transaction history by month, week, day, or year. Additionally, opening the app up to different kinds of currencies could be interesting as well. Thanks for your interest in RailsRiches!
+
 ## Requirements
 
 - Ruby 2.7.4

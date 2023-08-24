@@ -57,8 +57,12 @@ const UserProvider = ({ children }) => {
     }, [])
 
   function handleDeleteTag(deletedTag){
+    const updatedTransactions = currentUser.transactions.filter(t => t.tag_id !== deletedTag.id)
+    const updatedUser = {...currentUser, transactions: updatedTransactions}
     const updatedTags = tags.filter(tag => tag.id !== deletedTag.id)
     setTags(updatedTags)
+    setCurrentUser(updatedUser)
+
   }
   function handleCreateTag(newTag){
     const updatedTags = [...tags, newTag]
