@@ -6,7 +6,7 @@ function Tag ({ tag }){
     const [error, setError] = useState('')
 
     function confirmDelete(tag){
-        if (window.confirm("Are you sure you want to delete this tag? This action cannot be undone and all transactions that belong to this tag will also be deleted.")) {
+        if (window.confirm("Are you sure you want to delete this tag? This action cannot be undone and all transactions/budgets that belong to this tag will also be deleted.")) {
             handleDelete(tag)
         }
     }

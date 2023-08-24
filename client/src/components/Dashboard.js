@@ -64,12 +64,12 @@ function Dashboard (){
             <h2>All Transactions 💵</h2>
             <Sort onCheck={handleCheck} isChecked={isChecked}/>
             <div className="transaction-container">
-                {transactionsToDisplay}
+                {transactionsToDisplay.length > 0 ? transactionsToDisplay : "You currently have no transactions logged!"}
             </div>
             <button onClick={() => navigate('/transactions/new')}>Add New Transaction</button>
             <h2>All Tags 💲</h2>
             <div className="tags-container">
-                {tagsToDisplay}
+                {tagsToDisplay.length > 0 ? tagsToDisplay : "You currently have no tags created!"}
             </div>
             <button onClick={() => navigate('/tags/new')}>Add New Tag</button>
         </div>

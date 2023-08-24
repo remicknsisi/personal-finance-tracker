@@ -2,7 +2,7 @@
 
 ## Description
 
-Thanks for your interest in my RailsRiches SPA. I created this app utilizing a React frontend and Ruby on Rails backend. I created it for fun and to continue to sharpen my coding skills after graduating from Flatiron School. This app is intended to function as a personal finance tracker application.
+I created the RailsRiches app utilizing a React frontend and Ruby on Rails backend. I created it for fun and to continue to sharpen my coding skills after graduating from Flatiron School. This app is intended to function as a personal finance tracker.
 
 Users may sign up and existing Users may sign in. I have built in functionality to store passwords securely using the bcrypt gem. Once logged in, Users will be redirected to their dashboard. From here, they can create new budgets for each area of their lives they're looking to track financially (e.g. 'Rent', 'Pet', 'Groceries', etc). Each Budget model has a User-assigned allocated budget, as well as the ability to track (and subtract from the total budget) all transactions that file into that budget. Users, of course, also have the ability to log new transaction details as well as delete transactions.
 
