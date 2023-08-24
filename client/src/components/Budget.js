@@ -1,17 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState, useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 
 function Budget ({ budget }){
-    const { currentUser, handleDeleteBudget } = useContext(UserContext)
+    const { currentUser, handleDeleteBudget, tags } = useContext(UserContext)
     const [error, setError] = useState('')
-    const [tags, setTags] = useState([])
-
-    useEffect(() => {
-        fetch('/tags')
-        .then(res => res.json())
-        .then(tagData => setTags(tagData))
-    }, [])
 
     function handleDelete(budget){
         fetch(`/budgets/${budget.id}`, {

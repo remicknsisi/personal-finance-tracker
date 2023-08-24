@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState, useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 
 function NewTagForm(){

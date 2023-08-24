@@ -1,17 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState, useContext } from 'react';
 import { UserContext } from "../context/UserProvider.js";
 
 function Transaction ({ transaction }){
-    const { currentUser, handleDeleteTransaction } = useContext(UserContext)
+    const { currentUser, handleDeleteTransaction, tags } = useContext(UserContext)
     const [error, setError] = useState('')
-    const [tags, setTags] = useState([])
-
-    useEffect(() => {
-        fetch('/tags')
-        .then(res => res.json())
-        .then(tagData => setTags(tagData))
-    }, [])
 
     const tagToDisplay = tags.find(tag => tag.id == transaction.tag_id)
 
@@ -36,7 +28,7 @@ function Transaction ({ transaction }){
 
     return (
         <div className="transaction">
-            <h4>{tagToDisplay ? tagToDisplay.keyword : "Loading transaction..."}</h4>
+            <h4>{tagToDisplay ? tagToDisplay.keyword : "Loading transaction tag..."}</h4>
             <p>Description: {transaction.description}</p>
             <p>Date: {transaction.date}</p>
             <p>Amount: ${(transaction.amount).toFixed(2)}</p>

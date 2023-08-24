@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 import Transaction from './Transaction.js';
 import EditBudgetForm from './EditBudgetForm.js';
