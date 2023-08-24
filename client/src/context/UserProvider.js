@@ -16,6 +16,12 @@ const UserProvider = ({ children }) => {
     }})
   }, [])
 
+  useEffect(() => {
+    fetch('/tags')
+    .then(res => res.json())
+    .then(tagData => setTags(tagData))
+    }, [])
+
   const login = (user) => {setCurrentUser(user)}
   const logout = () => {setCurrentUser(null)}
   const signup = (newUser) => {setCurrentUser(newUser)}
@@ -49,12 +55,6 @@ const UserProvider = ({ children }) => {
     const updatedUser = {...currentUser, budgets: userUpdatedBudgets}
     setCurrentUser(updatedUser)
   }
-
-  useEffect(() => {
-    fetch('/tags')
-    .then(res => res.json())
-    .then(tagData => setTags(tagData))
-    }, [])
 
   function handleDeleteTag(deletedTag){
     const updatedBudgets = currentUser.budgets.filter(budget => budget.tag_id !== deletedTag.id)

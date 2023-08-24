@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { UserContext } from "../context/UserProvider.js";
 
 function Transaction ({ transaction }){
-    const { currentUser, handleDeleteTransaction, tags } = useContext(UserContext)
+    const { handleDeleteTransaction, tags } = useContext(UserContext)
     const [error, setError] = useState('')
 
     const tagToDisplay = tags.find(tag => tag.id == transaction.tag_id)

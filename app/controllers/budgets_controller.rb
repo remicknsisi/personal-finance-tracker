@@ -10,7 +10,7 @@ class BudgetsController < ApplicationController
     end
 
     def index
-        budgets = Budget.all
+        budgets = @user.budgets
         render json: budgets, status: :ok
     end
 

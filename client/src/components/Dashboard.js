@@ -58,7 +58,7 @@ function Dashboard (){
             <button onClick={() => confirmDelete()}>Delete Account</button>
             <h2>All Budgets 🏦</h2>
             <div className="budget-container">
-                {budgetsToDisplay}
+                {budgetsToDisplay ? budgetsToDisplay.length > 0 ? budgetsToDisplay : "You currently have no budgets created!" : null}
             </div>
             <button onClick={() => navigate('/budgets/new')}>Add New Budget</button>
             <h2>All Transactions 💵</h2>

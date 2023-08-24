@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 
 function Budget ({ budget }){
-    const { currentUser, handleDeleteBudget, tags } = useContext(UserContext)
+    const { handleDeleteBudget, tags } = useContext(UserContext)
     const [error, setError] = useState('')
 
     function handleDelete(budget){

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { UserContext } from "../context/UserProvider.js";
 
 function Tag ({ tag }){
-    const { currentUser, handleDeleteTag } = useContext(UserContext)
+    const { handleDeleteTag } = useContext(UserContext)
     const [error, setError] = useState('')
 
     function confirmDelete(tag){

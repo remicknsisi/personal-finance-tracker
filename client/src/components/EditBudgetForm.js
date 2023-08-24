@@ -73,5 +73,3 @@ function EditBudgetForm() {
 }
 
 export default EditBudgetForm;
-
-// do i want to let the user be able to edit the tag here?
