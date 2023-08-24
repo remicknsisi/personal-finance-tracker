@@ -54,21 +54,21 @@ function Dashboard (){
     
     return (
         <div className="app">
-            {currentUser ? <h1>Welcome to RailsRiches, {currentUser.name}!</h1> : null}
+            {currentUser ? <h1 className="title">Welcome to RailsRiches, {currentUser.name}!</h1> : null}
             {currentUser ? <button onClick={handleLogout}>Logout</button> : <button onClick={() => navigate('/login')}>Login</button>}
             <button onClick={() => confirmDelete()}>Delete Account</button>
-            <h2>Budgets</h2>
+            <h2>All Budgets</h2>
             <div className="budget-container">
                 {budgetsToDisplay}
             </div>
             <button onClick={() => navigate('/budgets/new')}>Add New Budget</button>
-            <h2>Transactions</h2>
+            <h2>All Transactions</h2>
             <Sort onCheck={handleCheck} isChecked={isChecked}/>
             <div className="transaction-container">
                 {transactionsToDisplay}
             </div>
             <button onClick={() => navigate('/transactions/new')}>Add New Transaction</button>
-            <h2>Tags</h2>
+            <h2>All Tags</h2>
             <div className="tags-container">
                 {tagsToDisplay}
             </div>

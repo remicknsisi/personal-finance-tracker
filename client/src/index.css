@@ -2,6 +2,11 @@
   padding: 5px
 }
 
+.title {
+  text-align: center;
+  margin: auto;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -37,7 +42,7 @@ code {
 
 .transaction {
   padding: 10px;
-  border: 1px solid black
+  border: 3px solid black
 
 }
 
@@ -66,7 +71,13 @@ button:hover {
 
 .tags-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 15px;
-  padding: 20px
+  padding: 10px
+}
+
+.tag {
+  padding: 10px;
+  border: 1px solid black
+
 }

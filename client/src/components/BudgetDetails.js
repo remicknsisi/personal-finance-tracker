@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 import Transaction from './Transaction.js';
 import EditBudgetForm from './EditBudgetForm.js';
+import Chart from './Chart.js';
 
 function BudgetDetails (){
     const [budgets, setBudgets] = useState([])
@@ -49,7 +50,11 @@ function BudgetDetails (){
                 <button onClick={() => setIsHidden(!isHidden)}>Edit Budget</button>
                 {isHidden ? null : <EditBudgetForm/>}
             </div>
+            <br/>
+            <Chart data={transactionsToDisplay} />
+            <br/>
             <div className="transaction">
+            <h3>Transactions Under this Budget:</h3>
                 {transactionsToDisplay ? transactionsToDisplay.map(t => {
                     return <Transaction transaction={t} key={t.id}/>}) : "Loading..."}
             </div>

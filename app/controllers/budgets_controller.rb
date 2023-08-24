@@ -33,6 +33,7 @@ class BudgetsController < ApplicationController
             render json: {error: "You may only edit your own budgets!"}, status: :unprocessable_entity
         end
     end
+    # add validation here so an updated budget cant be made into a duplicatE? just a .valid?
 
     private
 
