@@ -40,7 +40,7 @@ function NewTagForm(){
 
     return (
         <div className="form-container">
-            <h2>Create Tag: </h2>
+            <h2>Add New Tag: </h2>
             <form onSubmit={handleSubmitTag} className="form">
                 <label>Keyword: </label>
                 <input className="form-input" type="text" onChange={(e) => setKeyword(e.target.value)} value={keyword} placeholder="Ex: Groceries" />

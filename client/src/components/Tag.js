@@ -2,8 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 
-function Tag ({ tag }){
-    const { currentUser, handleDeleteTag } = useContext(UserContext)
+function Tag ({ tag, onDelete }){
+    const { currentUser } = useContext(UserContext)
     const [error, setError] = useState('')
 
     function handleDelete(tag){
@@ -14,7 +14,7 @@ function Tag ({ tag }){
             if (res.ok){
                 res.json()
                 .then(deletedTag => {
-                    handleDeleteTag(deletedTag)
+                    onDelete(deletedTag)
                 })
             } else {
                 res.json()

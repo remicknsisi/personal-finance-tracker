@@ -25,6 +25,11 @@ function Dashboard (){
         .then(res => res.json())
         .then(tagData => setTags(tagData))
     }, [])
+    
+      function handleDeleteTag(deletedTag){
+        const updatedTags = tags.filter(tag => tag.id !== deletedTag.id)
+        setTags(updatedTags)
+      }
 
     useEffect(() => {
         fetch('/transactions')
@@ -49,7 +54,7 @@ function Dashboard (){
         return <Budget budget={b} key={b.id}/>}): null
         
     const tagsToDisplay = tags.map(t => {
-        return <Tag tag={t} key={t.id}/>})
+        return <Tag tag={t} key={t.id} onDelete={handleDeleteTag}/>})
 
     const allTransactions = transactions.map(t => {
         return <Transaction transaction={t} key={t.id}/>})
