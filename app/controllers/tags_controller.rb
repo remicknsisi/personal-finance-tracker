@@ -14,6 +14,16 @@ class TagsController < ApplicationController
         end
     end
 
+    def destroy
+        tag = Tag.find_by(id: params[:id])
+        if tag
+            tag.destroy
+            render json: tag, status: :ok
+        else
+            render json: { error: "Could not find tag to delete" }, status: :not_found
+        end
+    end
+
     private
 
     def tag_params

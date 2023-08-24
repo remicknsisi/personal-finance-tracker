@@ -4,11 +4,13 @@ import { UserContext } from "../context/UserProvider.js";
 import Budget from './Budget.js';
 import Sort from './Sort.js';
 import Transaction from './Transaction.js';
+import Tag from './Tag.js';
 
 function Dashboard (){
     const { currentUser, logout, handleDeleteAccount} = useContext(UserContext)
     const [isChecked, setIsChecked] = useState(false)
     const [transactions, setTransactions] = useState([])
+    const [tags, setTags] = useState([])
 
     const navigate = useNavigate()
 
@@ -17,6 +19,12 @@ function Dashboard (){
             handleDeleteAccount()
         }
     }
+
+    useEffect(() => {
+        fetch('/tags')
+        .then(res => res.json())
+        .then(tagData => setTags(tagData))
+    }, [])
 
     useEffect(() => {
         fetch('/transactions')
@@ -39,6 +47,9 @@ function Dashboard (){
 
     const budgetsToDisplay = currentUser ? currentUser.budgets.map(b => {
         return <Budget budget={b} key={b.id}/>}): null
+        
+    const tagsToDisplay = tags.map(t => {
+        return <Tag tag={t} key={t.id}/>})
 
     const allTransactions = transactions.map(t => {
         return <Transaction transaction={t} key={t.id}/>})
@@ -64,6 +75,11 @@ function Dashboard (){
                 {transactionsToDisplay}
             </div>
             <button onClick={() => navigate('/transactions/new')}>Add New Transaction</button>
+            <h2>Tags</h2>
+            <div className="tags-container">
+                {tagsToDisplay}
+            </div>
+            <button onClick={() => navigate('/tags/new')}>Add New Tag</button>
         </div>
     )
 }

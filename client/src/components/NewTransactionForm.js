@@ -74,8 +74,8 @@ function NewTransactionForm (){
                 <DatePicker selected={date} onChange={(d) => setDate(d)} />                
                 <br></br>
                 <br></br>
-                <br/>
                 <button type="submit">Submit Transaction</button>
+                <p>Don't see the tag you want for your budget? Create a new one <Link to={'/tags/new'}>here.</Link></p>
                 <p className="error-message">{errorsList}</p>
                 <button onClick={() => navigate('/')}>Back to Dashboard</button>
             </form>
