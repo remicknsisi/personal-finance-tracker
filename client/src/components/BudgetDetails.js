@@ -44,7 +44,7 @@ function BudgetDetails (){
             <div className="budget">
                 <h3>{tagToDisplay ? tagToDisplay.keyword: "Loading..."} Budget</h3>
                 <p>Total Allocated Budget: ${budgetToDisplay ? (budgetToDisplay.amount).toFixed(2) : "Loading..."}</p>
-                <p>Amount Remaining: ${budget_remaining ? budget_remaining.toFixed(2) : "Loading..."}</p>
+                { budget_remaining > 0 ? <p className="under-budget">Amount Remaining: ${budget_remaining ? budget_remaining.toFixed(2) : "Loading..."}</p> : <p className="over-budget">Amount Remaining: ${budget_remaining ? budget_remaining.toFixed(2) : "Loading..."}</p>}
                 <button onClick={() => navigate('/')}>Back to Dashboard</button>
                 <button onClick={() => setIsHidden(!isHidden)}>Edit Budget</button>
                 {isHidden ? null : <EditBudgetForm/>}
