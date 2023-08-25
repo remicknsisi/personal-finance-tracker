@@ -5,7 +5,6 @@ const UserContext = React.createContext();
 
 const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null)
-  const [tags, setTags] = useState([])
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -15,12 +14,6 @@ const UserProvider = ({ children }) => {
       res.json().then((user) => setCurrentUser(user))
     }})
   }, [])
-
-  useEffect(() => {
-    fetch('/tags')
-    .then(res => res.json())
-    .then(tagData => setTags(tagData))
-    }, [])
 
   const login = (user) => {setCurrentUser(user)}
   const logout = () => {setCurrentUser(null)}
@@ -59,15 +52,21 @@ const UserProvider = ({ children }) => {
   function handleDeleteTag(deletedTag){
     const updatedBudgets = currentUser.budgets.filter(budget => budget.tag_id !== deletedTag.id)
     const updatedTransactions = currentUser.transactions.filter(t => t.tag_id !== deletedTag.id)
-    const updatedUser = {...currentUser, transactions: updatedTransactions, budgets: updatedBudgets}
-    const updatedTags = tags.filter(tag => tag.id !== deletedTag.id)
-    setTags(updatedTags)
+    const updatedTags = currentUser.tags.filter(tag => tag.id !== deletedTag.id)
+
+    const updatedUser = {...currentUser, transactions: updatedTransactions, budgets: updatedBudgets, tags: updatedTags}
+    // const updatedTags = tags.filter(tag => tag.id !== deletedTag.id)
+    // setTags(updatedTags)
     setCurrentUser(updatedUser)
 
   }
   function handleCreateTag(newTag){
-    const updatedTags = [...tags, newTag]
-    setTags(updatedTags)
+    const userUpdatedTags = [...currentUser.tags, newTag]
+    const updatedUser = {...currentUser, tags: userUpdatedTags}
+    setCurrentUser(updatedUser)
+
+    // const updatedTags = [...tags, newTag]
+    // setTags(updatedTags)
   }
 
   function handleDeleteAccount(){
@@ -81,7 +80,7 @@ const UserProvider = ({ children }) => {
   }
 
   return (
-    <UserContext.Provider value={{currentUser, login, logout, signup, handleNewTransaction, handleDeleteTransaction, handleDeleteBudget, handleUpdateBudget, handleNewBudget, handleDeleteAccount, tags, handleDeleteTag, handleCreateTag}}>
+    <UserContext.Provider value={{currentUser, login, logout, signup, handleNewTransaction, handleDeleteTransaction, handleDeleteBudget, handleUpdateBudget, handleNewBudget, handleDeleteAccount, handleDeleteTag, handleCreateTag}}>
       {children}
     </UserContext.Provider>
   )

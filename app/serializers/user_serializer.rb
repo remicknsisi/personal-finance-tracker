@@ -3,4 +3,5 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :budgets
   has_many :transactions
+  has_many :tags
 end

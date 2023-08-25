@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 
 function Budget ({ budget }){
-    const { handleDeleteBudget, tags } = useContext(UserContext)
+    const { handleDeleteBudget, currentUser } = useContext(UserContext)
     const [error, setError] = useState('')
 
     function handleDelete(budget){
@@ -27,7 +27,7 @@ function Budget ({ budget }){
 
     const navigate = useNavigate()
 
-    const tagToDisplay = tags.find(tag => tag.id == budget.tag_id)
+    const tagToDisplay = currentUser ? currentUser.tags.find(tag => tag.id == budget.tag_id): null
 
     return (
         <div className="budget">

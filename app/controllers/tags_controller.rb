@@ -1,8 +1,8 @@
 class TagsController < ApplicationController
     def index
-        tags = @user.tags
-        if tags
-            render json: tags, status: :ok
+        user_tags = @user.tags
+        if user_tags
+            render json: user_tags, status: :ok
         else
             render json: { error: "Could not find tags for this user" }, status: :not_found
         end
