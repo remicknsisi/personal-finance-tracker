@@ -31,8 +31,7 @@ function Dashboard (){
 
     const budgetsToDisplay = currentUser ? currentUser.budgets.map(b => {
         return <Budget budget={b} key={b.id}/>}): null
-    const uniqueTags = currentUser ? Array.from(new Set(currentUser.tags.map(JSON.stringify)))
-    .map(JSON.parse): null
+    const uniqueTags = currentUser ? Array.from(new Set(currentUser.tags.map(JSON.stringify))).map(JSON.parse): null
     const tagsToDisplay = uniqueTags ? uniqueTags.map(t => {
         return <Tag tag={t} key={t.id}/>}): null
     const allTransactions = currentUser ? currentUser.transactions.map(t => {
