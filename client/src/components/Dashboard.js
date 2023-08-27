@@ -10,12 +10,19 @@ function Dashboard (){
     const { currentUser, logout, handleDeleteAccount } = useContext(UserContext)
     const [isChecked, setIsChecked] = useState(false)
     const [transactions, setTransactions] = useState([])
+    const [budgets, setBudgets] = useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
         fetch('/transactions')
         .then(res => res.json())
         .then(transactionData => setTransactions(transactionData))
+    }, [currentUser])
+
+    useEffect(() => {
+        fetch('/budgets')
+        .then(res => res.json())
+        .then(budgetData => setBudgets(budgetData))
     }, [currentUser])
 
     function confirmDelete(){
@@ -36,8 +43,8 @@ function Dashboard (){
         })
     }
 
-    const budgetsToDisplay = currentUser ? currentUser.budgets.map(b => {
-        return <Budget budget={b} key={b.id}/>}): null
+    const budgetsToDisplay = [...budgets].map(b => {
+        return <Budget budget={b} key={b.id}/>})
     const uniqueTags = currentUser ? Array.from(new Set(currentUser.tags.map(JSON.stringify))).map(JSON.parse): null
     const tagsToDisplay = uniqueTags ? uniqueTags.map(t => {
         return <Tag tag={t} key={t.id}/>}): null

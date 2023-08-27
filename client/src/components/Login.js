@@ -58,9 +58,9 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
           className='login-input'
         />
-        {Boolean(error) ? <p className="error-message">**{error}**</p> : null}
         <br/><br/>
         <button type="submit">Login</button>
+        {Boolean(error) ? <p className="error-message">**{error}**</p> : null}
         <p className='signup-prompt'>Don't have an account? <Link to={`/signup`}>Sign up</Link></p>
       </form>
     </div>
