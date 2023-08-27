@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 import Budget from './Budget.js';
@@ -9,7 +9,14 @@ import Tag from './Tag.js';
 function Dashboard (){
     const { currentUser, logout, handleDeleteAccount } = useContext(UserContext)
     const [isChecked, setIsChecked] = useState(false)
+    const [transactions, setTransactions] = useState([])
     const navigate = useNavigate()
+
+    useEffect(() => {
+        fetch('/transactions')
+        .then(res => res.json())
+        .then(transactionData => setTransactions(transactionData))
+    }, [currentUser])
 
     function confirmDelete(){
         if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
@@ -34,10 +41,10 @@ function Dashboard (){
     const uniqueTags = currentUser ? Array.from(new Set(currentUser.tags.map(JSON.stringify))).map(JSON.parse): null
     const tagsToDisplay = uniqueTags ? uniqueTags.map(t => {
         return <Tag tag={t} key={t.id}/>}): null
-    const allTransactions = currentUser ? currentUser.transactions.map(t => {
-        return <Transaction transaction={t} key={t.id}/>}): null
-    const sortedTransactions = allTransactions ? allTransactions.sort((t1, t2) => (t1.date > t2.date) ? 1 : (t1.date < t2.date) ? -1 : 0).map(t => {
-        return <Transaction transaction={t} key={t.id}/>}): null
+    const allTransactions = [...transactions].map(t => {
+        return <Transaction transaction={t} key={t.id}/>})
+    const sortedTransactions = [...transactions].sort((t1, t2) => (t1.date > t2.date) ? 1 : (t1.date < t2.date) ? -1 : 0).map(t => {
+        return <Transaction transaction={t} key={t.id}/>})
     const transactionsToDisplay = isChecked ? sortedTransactions : allTransactions
     
     return (

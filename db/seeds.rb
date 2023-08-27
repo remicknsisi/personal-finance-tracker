@@ -42,14 +42,64 @@ Budget.create(
     tag_id: 6
 )
 
-10.times do
+2.times do
     Transaction.create(
-        amount: rand(1.00..200.00),
+        amount: rand(1.00..200.00).round(2),
+        date: Date.today,
+        description: "description!",
+        payment_method: "Visa",
+        user_id: 1,
+        tag_id: 1
+    )
+end
+2.times do
+    Transaction.create(
+        amount: rand(1.00..200.00).round(2),
+        date: Date.today,
+        description: "description!",
+        payment_method: "Cash",
+        user_id: 1,
+        tag_id: 2
+    )
+end
+2.times do
+    Transaction.create(
+        amount: rand(1.00..200.00).round(2),
         date: Date.today,
         description: "description!",
         payment_method: "Amex",
         user_id: 1,
-        tag_id: rand(1..6)
+        tag_id: 3
+    )
+end
+2.times do
+    Transaction.create(
+        amount: rand(1.00..200.00).round(2),
+        date: Date.today,
+        description: "description!",
+        payment_method: "Discover",
+        user_id: 1,
+        tag_id: 4
+    )
+end
+2.times do
+    Transaction.create(
+        amount: rand(1.00..200.00).round(2),
+        date: Date.today,
+        description: "description!",
+        payment_method: "Cash",
+        user_id: 1,
+        tag_id: 5
+    )
+end
+2.times do
+    Transaction.create(
+        amount: rand(1.00..200.00).round(2),
+        date: Date.today,
+        description: "description!",
+        payment_method: "Amex",
+        user_id: 1,
+        tag_id: 6
     )
 end
 

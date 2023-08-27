@@ -1,20 +1,13 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 
 function NewBudgetForm (){
     const [errorsList, setErrorsList] = useState([])
     const [amount, setAmount] = useState(1)
-    const [tags, setTags] = useState([])
     const [tagId, setTagId] = useState(1)
-    const { handleNewBudget } = useContext(UserContext)
+    const { handleNewBudget, currentUser } = useContext(UserContext)
     const navigate = useNavigate()
-
-    useEffect(() => {
-        fetch('/tags')
-        .then(res => res.json())
-        .then(tagData => setTags(tagData))
-    }, [])
 
     function handleSubmitBudget(e){
         e.preventDefault()
@@ -41,6 +34,8 @@ function NewBudgetForm (){
         })
     }
 
+    const uniqueTags = currentUser ? Array.from(new Set(currentUser.tags.map(JSON.stringify))).map(JSON.parse): null
+
     return (
         <div className="form-container">
             <h2>Create Budget: </h2>
@@ -50,7 +45,7 @@ function NewBudgetForm (){
                 <br></br>
                 <label>Select a Tag: </label>
                 <select value={tagId} className="form-input" onChange={e => setTagId(e.target.value)}>
-                    {tags.map(tag => <option value={tag.id}>{tag.keyword}</option>)}
+                    {uniqueTags.map(tag => <option value={tag.id}>{tag.keyword}</option>)}
                 </select>
                 <br></br>
                 <p>Don't see the tag you want for your budget? Create a new one <Link to={'/tags/new'}>here.</Link></p>

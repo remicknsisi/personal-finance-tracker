@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../context/UserProvider.js";
 import DatePicker from "react-datepicker";
@@ -13,15 +13,7 @@ function NewTransactionForm (){
     const [paymentMethod, setPaymentMethod] = useState('')
     const navigate = useNavigate()
 
-    const [tags, setTags] = useState([])
-    const { handleNewTransaction } = useContext(UserContext)
-
-
-    useEffect(() => {
-        fetch('/tags')
-        .then(res => res.json())
-        .then(tagData => setTags(tagData))
-    }, [])
+    const { handleNewTransaction, currentUser } = useContext(UserContext)
 
     function handleSubmitTransaction(e){
         e.preventDefault()
@@ -51,6 +43,8 @@ function NewTransactionForm (){
         })
     }
 
+    const uniqueTags = currentUser ? Array.from(new Set(currentUser.tags.map(JSON.stringify))).map(JSON.parse): null
+
     return (
         <div className="form-container">
             <h2>Log New Transaction: </h2>
@@ -61,7 +55,7 @@ function NewTransactionForm (){
                 <label>Tag: </label>
                 <select className='form-input' type="number" onChange={e => setTagId(e.target.value)}>
                     <option>Select a Tag</option>
-                    {tags.map(tag => <option value={tag.id}>{tag.keyword}</option>)}
+                    {uniqueTags.map(tag => <option value={tag.id}>{tag.keyword}</option>)}
                 </select>
                 <br></br>
                 <label>Description: </label>
